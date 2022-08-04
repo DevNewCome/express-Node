@@ -1,6 +1,7 @@
 /*1°*/const express = require('express')
 /*1°*/const exphbs = require('express-handlebars')
-
+      const flash = require('express-flash')
+      const session = require('express-session')
 /*1°*/const app = express()
 /*1°*/const conn = require('./db/conn')
 
@@ -16,6 +17,17 @@ const userRoutes = require('./routes/userRouter')
     extended: true
   })
 )
+
+app.use(
+  session({
+    name: "session",
+    secret: "nosso_secret",
+    resave: false,
+    saveUninitialized: false,
+  })
+)
+
+app.use(flash());
 
 /*1°*/app.use(express.json())
 /*1°*/app.use(express.static('public'))

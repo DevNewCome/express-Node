@@ -25,6 +25,7 @@ class UserController {
   static async userRemove(req,res){
     const idUser = req.body.idUser
     await User.destroy({where: {id: idUser}})
+    req.flash('message', 'Usuário excluido com sucesso')
     res.redirect('/user')
   }
 }
