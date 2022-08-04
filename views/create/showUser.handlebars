@@ -1,0 +1,17 @@
+
+<ul class="user-list">
+  <h1>Lista de usuários:</h1>
+  {{#each user}}
+  <li class="user-li-list">
+   <span>Nome:</span> <label for="name">{{this.name}}</label> <br>  
+    <span>E-mail:</span><label for="email">{{this.email}}</label> <br>
+    <span>Profissão:</span><label for="job">{{this.job}}</label>  
+  </li>
+  <form action="/user/remove" method="POST">
+    <input type="hidden" name="idUser" value="{{this.id}}">
+    <button type="submit" class="btn-red">Excluir</button>
+  </form>
+    
+  {{/each}}
+</ul>
+
