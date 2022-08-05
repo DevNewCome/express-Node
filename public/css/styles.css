@@ -145,6 +145,10 @@ form input[type='submit'] {
   align-items: center;
 }
 
+.show-buttons{
+  display: flex;
+  gap: 20px
+}
 
 
 

@@ -7,10 +7,18 @@
     <span>E-mail:</span><label for="email">{{this.email}}</label> <br>
     <span>Profissão:</span><label for="job">{{this.job}}</label>  
   </li>
-  <form action="/user/remove" method="POST">
+  <div class="show-buttons">
+     <form action="/user/remove" method="POST">
     <input type="hidden" name="idUser" value="{{this.id}}">
     <button type="submit" class="btn-red">Excluir</button>
   </form>
+  
+   <form action="/user/edit" method="POST">
+    <input type="hidden" name="idUser" value="{{this.id}}">
+    <button type="submit" class="btn-red"> <a href="/user/edit{{this.id}}">Editar</a></button>
+  </form>
+  </div>
+ 
     
   {{/each}}
 </ul>

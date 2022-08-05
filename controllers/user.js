@@ -42,6 +42,23 @@ class UserController {
 
   }
 
+  static async editUser(req, res){
+    const id = req.params.id
+    const user = await   User.findOne({where: {id:id}, raw: true } )
+    res.render('create/edit', {user})
+  }
+  
+  static async updateUserPost(req,res){
+    const id = req.body.id
+    const user = {
+      name: req.body.name,
+      email: req.body.email,
+      job: req.body.job,
+    }
+    await User.update(user, {where: {id:id}})
+    res.redirect('/user')
+  }
+
   static async userRemove(req,res){
     const idUser = req.body.idUser
     await User.destroy({where: {id: idUser}})

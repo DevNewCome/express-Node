@@ -1,0 +1,17 @@
+<h1>Editando o usuario: {{user.name}}</h1>
+<form action="/user/edit" method="POST">
+  <input type="hidden" name="id" value={{user.id}}>
+  <div class="form-control">
+    <label for="title">Name:</label>
+    <input type="text" name="title" placeholder="O que você vai fazer?" value="{{user.name}}">
+  </div>
+   <div class="form-control">
+    <label for="email">E-mail:</label>
+    <input type="email" name="email" placeholder="O que você vai fazer?" value="{{user.email}}">
+  </div>
+  <div class="form-control">
+    <label for="job">Job:</label>
+    <textarea type="text" name="job" placeholder="O que você vai fazer?">{{user.job}}</textarea>
+  </div>
+  <input type="submit" value="Editar">
+</form>
