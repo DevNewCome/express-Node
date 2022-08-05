@@ -1,5 +1,5 @@
 const User = require('../models/user')
-const user = require('../models/user')
+
 
 class UserController {
 
@@ -13,6 +13,22 @@ class UserController {
   }
 
   static async createUserSave(req,res){
+   
+    const checkIfUserExist = await User.findOne({where: {email: req.body.email}})
+    if(checkIfUserExist){
+      req.flash('message', 'O e-mail já está em uso')
+      res.render('create/user')
+      return
+    }
+
+    const password = req.body.password
+    const confirm = req.body.confirmpassword
+        if (password != confirm) {
+          req.flash('message', 'As senhas não batem')
+          res.render('create/user')
+          return
+        }
+
     const user = {
       name: req.body.name,
       email: req.body.email,
@@ -20,6 +36,10 @@ class UserController {
     }
     await User.create(user)
     res.redirect('/user')
+
+
+   
+
   }
 
   static async userRemove(req,res){
@@ -28,7 +48,14 @@ class UserController {
     req.flash('message', 'Usuário excluido com sucesso')
     res.redirect('/user')
   }
+
+
+ 
+
 }
+
+
+
 
 
 
